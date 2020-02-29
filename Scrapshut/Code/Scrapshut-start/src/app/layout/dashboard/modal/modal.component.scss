@@ -1,0 +1,50 @@
+.btn-modal{
+    background-color: #F6A821;
+    color:white;
+    height:100px;
+    width:350px;
+    border-radius: 11px;
+}
+.btn-modal:hover{
+    background-color:black;
+    
+}
+
+
+img {
+    vertical-align: middle;
+ 
+}
+.img-divtwitter img{
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    padding:10px;
+    border: 15px solid #50ABF1;
+} 
+
+
+
+.img-div img{
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    border: 15px solid deeppink;
+} 
+
+.social-logo:hover{
+    
+     transform:scale (1.1);
+    -webkit-transition: width 2s, height 4s; 
+    transition: width 2s, height 4s;
+}
+
+.image_url{
+border-radius: 50%;
+}
+
+.modal-title{
+     margin:0 auto;
+}
+
+

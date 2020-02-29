@@ -1,0 +1,45 @@
+<div [@routerTransition]>
+<!--calling modal form custom html tag-->
+<app-modal></app-modal>
+
+<!--User social acc panel-->
+<div class="row">
+    <div *ngFor="let post of posts" class="list-group col-lg-4 ">
+        <div class="panel">
+            <div class="list-group-item pane_head">
+                <div class="text-center"> {{post.UserName}}</div>
+                  <div class="fa">            
+                 </div>
+            </div>
+         <div class="list-group-item pane_foot">
+           <div class="img-div">
+              <img src="{{post.ProfilepicUrl}}"  alter="Image" class="image_url" />
+            </div>
+               <div class="container">
+                 <div class="row">
+                    <div class="col col-lg-4">
+                        <div  class="pane_card_color text-center"> {{post.Provider}}  </div>
+                           <div  class="pane_card_color text-center">Provider</div> 
+                             <button class="btn dashboard-btn" (click)="btnClick()">Settings</button>
+                     </div>
+                    <div class="col col-lg-4">
+                        <div class="pane_card_color text-center">{{post.Followers}} </div>
+                           <div class="pane_card_color text-center">Followers</div>
+                          <button class="btn dashboard-btn" (click)="btnClick()">Stats</button>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="pane_card_color text-center">{{post.Status}}</div>
+                           <div class="pane_card_color text-center">Status</div>
+                              <button class="btn  dashboard-btn" (click)="btnClick()">Access</button>
+                      </div>
+                  </div>
+               </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+ <!--<hr />
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
+<hr />-->
+

@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-sm-12">   
+      <!--modal -->
+        <button class="btn btn-modal" (click)="open(content)">Add Account</button>
+        
+             <ng-template #content let-c="close" let-d="dismiss">
+                 <div class="modal-header">
+                      <h4 class="modal-title ">Select Service</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                     </div>
+            <div class="modal-body">
+                <div class="row">       
+                   <div class="col-sm-6 img-divtwitter">                      
+                       <img src="/assets/images/twitterlogo.png" class="social-logo"  (click)="makeTwittercall()" >
+                    </div>
+                        <div class="col-sm-6 img-div">       
+                             <img src="/assets/images/instagramlogo.png" class="social-logo" (click)="makeInstagramcall()">
+                        </div>
+                    </div>
+                </div>
+                    <!--<div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+                    </div>-->
+         </ng-template>    
+    </div>
+</div>

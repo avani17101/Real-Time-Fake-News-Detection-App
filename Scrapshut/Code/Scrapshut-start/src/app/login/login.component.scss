@@ -1,0 +1,157 @@
+// $topnav-background-color: #222;
+$topnav-background-color:rgb(210, 214, 222);
+:host {
+    display: block;
+}
+
+// .forImage{
+//     background-image: url("http://chicagoinflatables.com/wp-content/uploads/2015/01/chicago-skyline-silhouette-outline.jpg");
+// }
+.login-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    background: $topnav-background-color;
+    text-align: center;
+    color: Black;
+    padding: 3em;
+    .col-lg-4{
+        padding :0;
+    }
+    .input-lg {
+        height: 46px;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 0;
+        margin-bottom: 25px;
+    }
+    .input-underline {
+        background: 0 0;
+        border: none;
+        box-shadow: none;
+        border-bottom: 2px solid rgba(255,255,255,.5);
+        color: grey;
+        border-radius: 0;
+        //by diksha
+        border-color:Black;
+    }
+    .input-underline:focus {
+        border-bottom: 2px solid #f6a821;
+        box-shadow: none;
+    }
+    .rounded-btn{
+        -webkit-border-radius: 50px;
+                border-radius: 50px;
+        color: rgba(255,255,255,0.8);
+        background: $topnav-background-color;
+        border: 2px solid rgba(255,255,255,0.8);
+        font-size: 18px;
+        line-height: 40px;
+        padding: 0 25px;
+        margin-top:5px;   
+  
+    }
+  .rounded-btn:focus,.rounded-btn:active,.rounded-btn:visited{
+        color: rgba(255,255,255,1);
+        border: 2px solid rgba(255,255,255,1);
+        outline: none;
+         border-color:#f6a821;
+     
+    }
+
+.rounded-btn{
+    background-color: black;
+}
+
+.rounded-btn:hover{
+
+    background-color: #f6a821;
+}
+
+    h1 {
+        font-weight: 300;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 36px;
+        small {
+            color: rgba(255,255,255,0.7);
+        }
+    }
+
+    .form-group {
+        padding: 8px 0;
+        input::-webkit-input-placeholder {
+        color: black !important;
+        }
+
+        input:-moz-placeholder { /* Firefox 18- */
+        color: black !important;
+        }
+
+        input::-moz-placeholder {  /* Firefox 19+ */
+        color: black !important;
+        }
+
+        input:-ms-input-placeholder {
+        color: black !important;
+        }
+    }
+    .form-content {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: white;
+        margin-top: 10px;
+        height: 450px;
+    }
+    .form-group.form-text{
+        max-width: 75%;
+          margin:0 auto;
+    }
+    .user-avatar {
+        -webkit-border-radius: 50%;
+                border-radius: 50%;
+        border: 2px solid black;
+        // border-color:#f6a821;
+    }
+
+.login-btn{
+        color: white;
+        text-decoration: none !important;  
+}
+
+    .login-btn:hover{
+        color:rgba(255,255,255,0.8);
+        text-decoration: none !important;  
+           
+    }
+
+.btn{
+         border-color:#f6a821;
+}
+
+.alert-danger{
+    background-color: #f2dede;
+    border-color:#ebcccc;
+    color:#a94442;
+    max-width: 75%;
+    margin: 0 auto;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+label {
+float: left;
+font-size:  20px;
+}
+
+}

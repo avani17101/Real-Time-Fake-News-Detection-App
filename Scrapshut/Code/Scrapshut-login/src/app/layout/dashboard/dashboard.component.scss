@@ -1,0 +1,71 @@
+div.img-div{
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    margin-left: -25px;
+
+ }
+.img-div img{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+} 
+
+.image_url{
+border-radius: 50%;
+}
+
+img {
+    vertical-align: middle;
+}
+
+img {
+    border: 0;
+}
+
+
+div.list-group-item.pane_head{
+    min-height: 93px;
+    background: transparent;
+    color: white;
+    text-align: right;
+    font-size: 24px;
+
+}
+
+div.list-group-item.pane_foot{
+    min-height: 176px;
+    background-color: grey;
+}
+
+div.image{
+    
+      margin: 0 auto;
+
+}
+
+div.panel{
+    background-color: orange;
+    margin-top: 10px;
+}
+
+div.pane_card_color{
+    color: white;
+    margin-bottom: 6px;
+}
+
+div.fa{
+position: absolute;
+left: 90%;
+top: 65px;
+}
+
+.dashboard-btn{
+    background-color: black;
+    color:white;
+    margin-left: 18px;
+}
+
+.dashboard-btn:hover{
+    background-color:#F6A821;
+}

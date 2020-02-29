@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-sm-12">
+          
+            <!-- Large modal -->
+           
+                <button class="btn btn-modal" (click)="open(content)">Add Account</button>
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title ">Select Service</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <form #subForm="ngForm" class="form-horizontal" (ngSubmit)="subscription(subForm.value)" [formGroup]="myform" novalidate>  
+                        <div class="row">       
+                           <div class="col-sm-6">                      
+                             <div class="col">
+                                  <div>
+                                      <label>Title</label>
+                                   </div>
+                                   <div>
+                                      <input type="text" class="form-control input-underline input-lg" id="title" placeholder="title" name="title" autofocus [(ngModel)]="title"
+                                formControlName="title" required />                                      
+                                  </div>
+                                 <div>
+                                      <label>Billing Frequency*</label>
+                                 </div>
+                                   <div>
+                                      <select style="height: 38px;width: 211.5px;" class="form-control" id="select" name="select" ngModel autofocus formControlName="select" required>
+                                        <option value="" selected disabled>select</option>
+                                        <option value="trial">trial</option>
+                                        <option trial>paid</option>                                                                                
+                                      </select>                                      
+                                  </div>
+
+                                  <div>
+                                      Features:-
+                                  </div>
+
+                                  <div>
+                                      No. of tags per Service:
+                                  </div>
+
+                                  <div>
+                                      Super Targeting:
+                                  </div>
+
+                             </div>
+                           </div>
+
+                          <div class="col-sm-6">       
+                             <div class="col">
+                                  <div>
+                                      <label>Price*</label>
+                                   </div>
+                                   <div>
+                                      <input type="text" class="form-control input-underline input-lg" id="price" placeholder="price" name="price" autofocus [(ngModel)]="price"
+                                formControlName="price" required/>                                      
+                                  </div>
+                                 <div>
+                                      <label>No of Accounts*</label>
+                                 </div>
+                                   <div>
+                                      <input type="text"  class="form-control input-underline input-lg" id="noa" placeholder="NOA" name="NOA" autofocus [(ngModel)]="noa"
+                                formControlName="NOA" required/>                                      
+                                  </div>
+
+<br>
+
+                                  <div style="float: right;" >
+                                      Unlimited:<input type="radio" name="tags" id="unlimited"   [(ngModel)]="tags" value="unlimited"
+                                formControlName="tags" checked/>
+                                      Limited:<input type="radio" name="tags" id="unlimited"  [(ngModel)]="tags" value="limited"
+                                formControlName="tags" />                                      
+                                  </div>
+<br>
+                                  <div class="col" >
+                                      <input type="checkbox" style="float: right;margin-top: 5px;" name="check" id="unlimited"  [(ngModel)]="check" value="limited"
+                                formControlName="check" />
+                                  </div>
+
+                             </div>
+                        </div>
+                       </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" [routerLink]="['/dashboard']" (click)="c('Close click')" [disabled]="!myform.valid">Submit</button>
+                        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+                    </div>
+
+                      </form>
+                    </div>
+                    <!--<div class="modal-footer">
+                        <!--<button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>-->
+                    <!--</div>-->
+                </ng-template>  
+    </div>
+</div>
