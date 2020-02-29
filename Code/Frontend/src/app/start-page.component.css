@@ -1,0 +1,66 @@
+.Responsive {
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .column {
+    padding-top: 100px;
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .Buttons {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 20px 32px;
+    text-align: center;
+    text-decoration: none;  
+    display:inline-block;
+    font-size: 16px;
+  }
+
+  .card-img
+  {
+      max-width: 150px;
+      height: auto;
+  }
+
+  .lnr {
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.05em;
+    stroke-width: 1;
+  }
+  
+  .services-icon {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  bgc2, .vLine, .hLine {
+      background-color: #0F52BA;
+  }
+  
+  .quote-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .services-icon {
+      font-size: 60px;
+      margin-left: 2rem;
+  }
