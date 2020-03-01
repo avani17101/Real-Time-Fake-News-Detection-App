@@ -21,6 +21,9 @@
     "@angular/router": "~9.0.3",
     "animations": "0.0.0",
     "cors": "^2.8.5",
+    "environments": "^1.2.2",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

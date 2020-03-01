@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RateWebsiteForm} from './RateWebsiteForm.component'
 import {StartPage} from './start-page.component'
+import {LoginComponent} from './login.component'
 
 
 
 const routes: Routes = [
   { path : '', component: StartPage},
   { path: 'RatingForm', component: RateWebsiteForm},
+  { path: 'Login', component: LoginComponent },
 ];
 
 @NgModule({
