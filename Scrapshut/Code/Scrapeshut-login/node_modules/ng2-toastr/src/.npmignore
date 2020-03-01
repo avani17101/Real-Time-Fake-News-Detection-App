@@ -1,4 +1,0 @@
-# Remove tsc generated files
-.js
-.map
-.d.ts
