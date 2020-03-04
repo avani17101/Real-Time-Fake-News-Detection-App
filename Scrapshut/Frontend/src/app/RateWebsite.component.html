@@ -1,0 +1,24 @@
+<header>
+    <img src="../assets/Scrapshut.png" class="Responsive">
+</header>
+
+<div class="form-style-2">
+	<div class="form-style-2-heading">Enter Review</div>
+	<form>	
+	<label for="field4"><span>Type</span><select name="field4" class="select-field" id='type'>
+	<option value="Fake">Fake</option>
+	<option value="Real">Real</option>
+	<option value="Other">Other</option>
+	</select></label>
+	<label for="field4"><span>Rating</span><select name="field4" class="select-field" id='Rating'>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		</select></label>
+	<label for="field5"><span>Review <span class="required">*</span></span><textarea name="field5" class="textarea-field" id='Review'></textarea></label>
+	
+	<button (click)="AddReview()" class='submit' type="submit" value="Submit" >Submit</button>
+	</form>
+	</div>
