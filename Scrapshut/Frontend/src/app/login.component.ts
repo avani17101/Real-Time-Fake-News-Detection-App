@@ -1,36 +1,44 @@
 import { Component } from '@angular/core';
-import {AppService} from './service'
-import { Router } from '@angular/router'
+import {AppService} from './service';
+import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'Login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class Login {
+export class Login 
+{
   title = 'Login';
-  constructor(private service: AppService, private router: Router) {}
+  constructor(private service: AppService, private router: Router, private snackbar:MatSnackBar) {}
+  ngOnInit()
+  {
+    localStorage.clear();
+  }
   UserLogin()
   {
     let email=document.getElementById("email") as HTMLInputElement;
     let password =document.getElementById("password") as HTMLInputElement;
-    let data_json ={
+    let user_data ={
         email: email.value,
         password:password.value,
     };
-    console.log(data_json);
-    this.router.navigateByUrl('signup');
-    this.service.user_login(data_json).subscribe(
+    console.log(user_data);
+    this.service.user_login(user_data).subscribe(
         data => {
-          if(data.ans === 'loggedin')
+          if(data.ans === 'Logged In')
           {
-              alert("LoggedIn");
-              this.router.navigateByUrl('StartPage');
-              localStorage.setItem('email', data_json.email)
-            // alert();
+            this.snackbar.open("Successfully Logged In", "", {
+              duration: 20000,panelClass: 'snackbar_right'});
+            localStorage.setItem("logged_in_user", data.username)
+            this.router.navigateByUrl('StartPage')
+
           }
           else
           {
-              alert("Incorrect Credentials");
+            this.snackbar.open("Incorrect Credentials", "", {
+              duration: 20000,panelClass: 'snackbar_wrong'});
           }
           
         })

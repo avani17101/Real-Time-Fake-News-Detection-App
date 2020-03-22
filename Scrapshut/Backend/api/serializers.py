@@ -1,11 +1,6 @@
 from rest_framework import serializers
 
-from .models import URL, Reviews,User_Credentials
-
-class URLSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = URL
-        fields = ('url')
+from .models import Reviews,User_Credentials
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

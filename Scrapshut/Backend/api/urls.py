@@ -13,8 +13,7 @@ urlpatterns = [
     url(r'^url_verification',views.url_verification),
     url(r'^add_review',views.add_review),
     url(r'^user_login',views.user_login),
-    url(r'^user_signup_wwww',views.user_signup_wwww),
-    url(r'^user_signup',views.user_signup)
+    url(r'^user_signup',views.user_signup),
     # path('', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

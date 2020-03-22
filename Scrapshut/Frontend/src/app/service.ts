@@ -19,9 +19,10 @@ import { Observable } from 'rxjs';
     }
     user_signup(data :any): Observable<any>{
       console.log(data)
-      return this.http.post(`${this.baseUrl}/user_signup_wwww/`,data)
+      return this.http.post(`${this.baseUrl}/user_signup/`,data)
     }
     user_login(data :any): Observable<any>{
+      console.log("hello")
       return this.http.post(`${this.baseUrl}/user_login/`,data)
     }
     // check_review(data :any): Observable<any>{

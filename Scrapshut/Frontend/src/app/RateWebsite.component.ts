@@ -26,7 +26,7 @@ export class RateWebsite {
     this.router.navigateByUrl('StartPage');
     this.service.add_details(data_json).subscribe(
         data => {
-          if(data.ans === 'added')
+          if(data.exists === 'yes')
           {
             this.router.navigateByUrl('');
           }
