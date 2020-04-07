@@ -8,7 +8,7 @@ URL = f1.read()
 r = requests.get(URL) 
   
 soup = BeautifulSoup(r.content, 'html5lib') 
-print(soup.prettify()) 
+# print(soup.prettify()) 
 # kill all script and style elements
 for script in soup(["script", "style"]):
     script.extract()    # rip it out

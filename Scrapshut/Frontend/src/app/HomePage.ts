@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AppService} from './service';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { CheckWebsiteRating } from './CheckWebsiteRating.component';
 
 
 @Component({
@@ -17,6 +18,25 @@ export class Home_Page {
     localStorage.clear();
     let url = document.getElementById("url") as HTMLInputElement;
     console.log(url.value)
+  }
+  CheckWebsite(urlc)
+  {
+    let url_data={url:urlc};
+    this.service.check_url(url_data).subscribe(
+      data=> {
+        console.log(data.ans);
+        if(data.ans === 'scraped website')
+        {
+          this.snackbar.open("Scraped Website", "", {
+            duration: 20000,panelClass: 'snackbar_right'});
+        }
+        else
+        {
+          this.snackbar.open("Could Not Scrape", "", {
+            duration: 20000,panelClass: 'snackbar_wrong'});
+        }
+      }
+    );
   }
   URL_Verification()
   {
@@ -40,7 +60,8 @@ export class Home_Page {
           
           this.snackbar.open("URL EXISTS", "", {
             duration: 20000,panelClass: 'snackbar_right'});
-            this.router.navigateByUrl('CheckWebsiteRating')
+            console.log("here")
+            this.CheckWebsite(url.value)
         }
       }
     );

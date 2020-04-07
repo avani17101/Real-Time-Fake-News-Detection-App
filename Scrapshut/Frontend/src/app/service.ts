@@ -25,8 +25,8 @@ import { Observable } from 'rxjs';
       console.log("hello")
       return this.http.post(`${this.baseUrl}/user_login/`,data)
     }
-    // check_review(data :any): Observable<any>{
-    //   return this.http.post(`${this.baseUrl}/check_review/`,data)
-    // }
+    check_url(data :any): Observable<any>{
+      return this.http.post(`${this.baseUrl}/check_url/`,data)
+    }
     
   }

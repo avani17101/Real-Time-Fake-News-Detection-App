@@ -7,6 +7,7 @@ from .models import Reviews, User_Credentials
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from passlib.hash import pbkdf2_sha256 as pass_handler
+from .scraper import scraper
 import requests
 import json
 
@@ -73,4 +74,10 @@ def user_login(request):
             answer = {'ans': 'Not Logged In'}
 
     return JsonResponse(answer)
-        
+
+@csrf_exempt 
+def check_url(request):
+    data = JSONParser().parse(request)
+    scraper(data['url'])
+    answer = {'ans':'scraped website'}
+    return JsonResponse(answer)    

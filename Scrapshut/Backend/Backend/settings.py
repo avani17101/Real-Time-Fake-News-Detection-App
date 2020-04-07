@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'api',
     'passlib',
     'corsheaders',
+    'bs4'
 ]
 
 MIDDLEWARE = [
