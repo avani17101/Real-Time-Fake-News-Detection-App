@@ -71,6 +71,13 @@ body{
   .login-dark form .btn-primary:active {
 	transform:translateY(1px);
   }
+
+  #OTP {
+	  display: none;
+  }
+  #OTPButton {
+	display: none;
+}
   ::ng-deep .snackbar_right{
 	  background: darkgreen;
 	  color: white;

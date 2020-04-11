@@ -17,14 +17,12 @@ export class Home_Page {
   {
     localStorage.clear();
     let url = document.getElementById("url") as HTMLInputElement;
-    console.log(url.value)
   }
   CheckWebsite(urlc)
   {
     let url_data={url:urlc};
     this.service.check_url(url_data).subscribe(
       data=> {
-        console.log(data.ans);
         if(data.ans === 'scraped website')
         {
           this.snackbar.open("Scraped Website", "", {
@@ -40,14 +38,12 @@ export class Home_Page {
   }
   URL_Verification()
   {
-    console.log("hello");
     let url = document.getElementById("url") as HTMLInputElement;
     let url_data={url:url.value};
     this.snackbar.open("Loading Please Wait....", "", {
       duration: 20000,panelClass: 'snackbar_waiting'});
     this.service.verify_url(url_data).subscribe(
       data=> {
-        console.log(data.exists)
         if(data.exists==='no')
         { 
           // alert("URL DOES NOT EXIST")
@@ -60,7 +56,6 @@ export class Home_Page {
           
           this.snackbar.open("URL EXISTS", "", {
             duration: 20000,panelClass: 'snackbar_right'});
-            console.log("here")
             this.CheckWebsite(url.value)
         }
       }

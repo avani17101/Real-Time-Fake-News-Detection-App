@@ -7,6 +7,7 @@ from .models import Reviews, User_Credentials
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from passlib.hash import pbkdf2_sha256 as pass_handler
+from django.core.mail import send_mail
 from .scraper import scraper
 import requests
 import json
@@ -80,4 +81,29 @@ def check_url(request):
     data = JSONParser().parse(request)
     scraper(data['url'])
     answer = {'ans':'scraped website'}
-    return JsonResponse(answer)    
+    return JsonResponse(answer)
+
+@csrf_exempt
+def credential_check(request):
+    answer = {'ans':'ok'}
+    data = JSONParser().parse(request)
+    users_email = User_Credentials.objects.filter(email = data['email'])
+    users_username = User_Credentials.objects.filter(username = data['username'])
+    print(users_email)
+    if users_email.exists():
+        answer = {'ans':'same email'}
+    elif users_username.exists():
+        answer = {'ans':'same username'}
+    else:
+        answer = {'ans':'ok'}
+    return JsonResponse(answer)
+
+@csrf_exempt
+def otp_mail(request):
+    print("here")
+    answer={'ans':'done'}
+    data = JSONParser().parse(request)
+    msg = " Hello New User,\n To Verify Account Please Enter OTP Provided Below\n You OTP For Account Verification : " + data['otp']
+    send_mail("OTP Verification", msg, "scrapshut-dass@outlook.com", [data['email']], fail_silently=False)
+    return JsonResponse(answer)
+

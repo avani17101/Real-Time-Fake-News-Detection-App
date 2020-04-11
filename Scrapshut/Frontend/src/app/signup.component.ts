@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {AppService} from './service'
 import { Router } from '@angular/router'
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
+
 
 
 @Component({
@@ -13,11 +15,105 @@ export class SignUp
 {
   
   title = 'SignUp';
-  constructor(private service: AppService, private router: Router, private snackbar:MatSnackBar) {}
+  checkcredential=0;
+  number_of_otp_attempts=0;
+  otp="000000";
+  user_data = {
+    name: "",
+    email : "",
+    username : "",
+    password : "",
+  }
+  constructor(private service: AppService, private router: Router, private snackbar:MatSnackBar,private dialog: MatDialog) {}
 
   ngOnInit()
   {
     localStorage.clear();
+    this.number_of_otp_attempts=0;
+  }
+
+  CheckCredentials(user_data)
+  {
+    this.service.credential_check(user_data).subscribe(
+      data => {
+        if(data.ans === 'same email')
+        {
+          this.snackbar.open("Email Already Used", "", {
+            duration: 2000000, panelClass: 'snackbar_wrong'});
+        }
+        else if (data.ans === 'same username')
+        {
+          this.snackbar.open("Username Already Exists", "", {
+            duration: 2000000, panelClass: 'snackbar_wrong'});
+        }
+        else
+        {
+          this.checkcredential=1;
+        }
+      });
+  }
+
+  OTP_Mail(otp_data)
+  {
+    this.service.otp_mail(otp_data).subscribe(
+      data=>{
+          ;
+      }
+    ) ;
+  }
+
+  OTPGiven()
+  {
+    if(this.number_of_otp_attempts>=3)
+    {
+      this.snackbar.open("3 Wrong Attempts Please Try Again Later", "", {
+        duration: 200000, panelClass: 'snackbar_wrong'});
+      this.router.navigateByUrl('')
+    }
+    let otpgiven=document.getElementById("OTP") as HTMLInputElement;
+    if(this.otp==otpgiven.value)
+    {this.RegisterAccount(this.user_data);}
+    else
+    {
+      this.snackbar.open("Wrong Attempt Please Try Again", "", {
+      duration: 200000, panelClass: 'snackbar_wrong'});
+      this.number_of_otp_attempts=this.number_of_otp_attempts+1;
+      if(this.number_of_otp_attempts>=3)
+      {
+        this.snackbar.open("3 Wrong Attempts Please Try Again Later", "", {
+          duration: 200000, panelClass: 'snackbar_wrong'});
+        this.router.navigateByUrl('')
+      }
+    }
+  }
+
+  RegisterAccount(user_data)
+  {
+    this.service.user_signup(user_data).subscribe(
+      data => {
+        if(data.ans === 'same email')
+        {
+          this.snackbar.open("Email Already Used", "", {
+            duration: 2000000, panelClass: 'snackbar_wrong'});
+        }
+        else if (data.ans === 'same username')
+        {
+          this.snackbar.open("Username Already Exists", "", {
+            duration: 2000000, panelClass: 'snackbar_wrong'});
+        }
+        else if (data.ans === 'added')
+        {
+          this.snackbar.open("Congrats Account Has Been Made Please Login Page", "", {
+            duration: 200000,panelClass: 'snackbar_right'});
+            this.router.navigateByUrl('login')
+        }
+        else
+        {
+          this.snackbar.open("Error! Could Not Add Account", "", {
+            duration: 200000, panelClass: 'snackbar_wrong'});
+        }
+      }
+    )
   }
 
   SignUp()
@@ -34,6 +130,8 @@ export class SignUp
     let passcheck=0;
     let emailcheck=0;
     let usernamecheck=0;
+    this.otp=(Math.floor(Math.random() * (999999 - 100000 + 1) ) + 100000).toString();
+
     if(password.value === password_check.value)
     {
       passmatch=1;
@@ -50,38 +148,42 @@ export class SignUp
     {
       usernamecheck=1;
     }
-    let user_data = {
+    this.user_data = {
       name: name.value,
       email : email.value,
       username : username.value,
       password : password.value,
     }
+    let otp_data = {
+      email: email.value,
+      otp: this.otp
+    }
     if (passmatch==1 && passcheck==1 && emailcheck==1 && usernamecheck==1)
     {
-        this.service.user_signup(user_data).subscribe(
-          data => {
-            if(data.ans === 'same email')
-            {
-              this.snackbar.open("Email Already Used", "", {
-                duration: 2000000, panelClass: 'snackbar_wrong'});
-            }
-            else if (data.ans === 'same username')
-            {
-              this.snackbar.open("Username Already Exists", "", {
-                duration: 2000000, panelClass: 'snackbar_wrong'});
-            }
-            else if (data.ans === 'added')
-            {
-              this.snackbar.open("Congrats Account Has Been Made Proceed To Login Page", "", {
-                duration: 200000,panelClass: 'snackbar_right'});
-            }
-            else
-            {
-              this.snackbar.open("Error! Could Not Add Account", "", {
-                duration: 200000, panelClass: 'snackbar_wrong'});
-            }
-          }
-        )
+        this.CheckCredentials(this.user_data);
+
+        if(this.checkcredential==1)
+        { 
+          var OTPinput = document.getElementById("OTP");
+          var OTPbutton = document.getElementById("OTPButton");
+          var Name = document.getElementById("name") as HTMLInputElement;
+          var Email = document.getElementById("email") as HTMLInputElement;
+          var UN = document.getElementById("username") as HTMLInputElement;
+          var Pass = document.getElementById("password") as HTMLInputElement;
+          var PassCheck = document.getElementById("confirm_password") as HTMLInputElement;
+          var SB = document.getElementById("SubmitButton") as HTMLInputElement;
+          Name.disabled=true;
+          Email.disabled=true;
+          UN.disabled=true;
+          Pass.disabled=true;
+          PassCheck.disabled=true;
+          SB.disabled=true;
+          OTPinput.style.display="block";
+          OTPbutton.style.display="block";
+          this.OTP_Mail(otp_data)
+          this.snackbar.open("OTP Sent To Account ----  It May Take A While It May Also Check Spam", "", {
+            duration: 200000,panelClass: 'snackbar_right'});
+        }
     }
     else
     {

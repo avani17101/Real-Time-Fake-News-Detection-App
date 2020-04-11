@@ -18,15 +18,18 @@ import { Observable } from 'rxjs';
       return this.http.post(`${this.baseUrl}/add_review/`,data)
     }
     user_signup(data :any): Observable<any>{
-      console.log(data)
       return this.http.post(`${this.baseUrl}/user_signup/`,data)
     }
     user_login(data :any): Observable<any>{
-      console.log("hello")
       return this.http.post(`${this.baseUrl}/user_login/`,data)
     }
     check_url(data :any): Observable<any>{
       return this.http.post(`${this.baseUrl}/check_url/`,data)
     }
-    
+    credential_check(data :any): Observable<any>{
+      return this.http.post(`${this.baseUrl}/credential_check/`,data)
+    }
+    otp_mail(data :any): Observable<any>{
+      return this.http.post(`${this.baseUrl}/otp_mail/`,data)
+    }
   }

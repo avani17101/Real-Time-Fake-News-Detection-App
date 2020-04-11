@@ -24,14 +24,12 @@ export class StartPage {
   }
   URL_Verification1()
   {
-    console.log("hello");
     let url = document.getElementById("url") as HTMLInputElement;
     let url_data={url:url.value};
     this.snackbar.open("Loading Please Wait....", "", {
       duration: 20000,panelClass: 'snackbar_waiting'});
     this.service.verify_url(url_data).subscribe(
       data=> {
-        console.log(data.exists)
         if(data.exists==='no')
         { 
           // alert("URL DOES NOT EXIST")
@@ -51,7 +49,6 @@ export class StartPage {
   }
   URL_Verification2()
   {
-    console.log("hello");
     let url = document.getElementById("url") as HTMLInputElement;
     let url_data={url:url.value};
     this.url_text=url.value;
@@ -59,7 +56,6 @@ export class StartPage {
       duration: 20000,panelClass: 'snackbar_waiting'});
     this.service.verify_url(url_data).subscribe(
       data=> {
-        console.log(data.exists)
         if(data.exists==='no')
         { 
           // alert("URL DOES NOT EXIST")

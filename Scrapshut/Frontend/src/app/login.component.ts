@@ -24,7 +24,6 @@ export class Login
         email: email.value,
         password:password.value,
     };
-    console.log(user_data);
     this.service.user_login(user_data).subscribe(
         data => {
           if(data.ans === 'Logged In')
