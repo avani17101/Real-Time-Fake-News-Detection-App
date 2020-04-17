@@ -28,6 +28,9 @@ export class SignUp
 
   ngOnInit()
   {
+    if(localStorage.getItem("OTPTimeout")==="1")
+    {this.snackbar.open("Sorry Your OTP has Timed Out Please Try Again", "", {
+      duration: 2000000, panelClass: 'snackbar_wrong'});}
     localStorage.clear();
     this.number_of_otp_attempts=0;
   }
@@ -53,28 +56,40 @@ export class SignUp
       });
   }
 
+  OTPTimeout()
+  {
+    localStorage.setItem("OTPTimeout","1");
+    window.location.reload(); 
+  }
   OTP_Mail(otp_data)
   {
     this.service.otp_mail(otp_data).subscribe(
       data=>{
-          ;
+        setTimeout(this.OTPTimeout, 300000);
+        console.log("hello");
       }
-    ) ;
-  }
-
-  OTPGiven()
-  {
-    if(this.number_of_otp_attempts>=3)
-    {
-      this.snackbar.open("3 Wrong Attempts Please Try Again Later", "", {
-        duration: 200000, panelClass: 'snackbar_wrong'});
-      this.router.navigateByUrl('')
+      ) ;
     }
-    let otpgiven=document.getElementById("OTP") as HTMLInputElement;
+
+    OTPGiven()
+    {
+      var OB = document.getElementById("OTPButton") as HTMLInputElement;
+      OB.disabled=true;
+      if(this.number_of_otp_attempts>=3)
+      {
+        this.snackbar.open("3 Wrong Attempts Please Try Again Later", "", {
+          duration: 200000, panelClass: 'snackbar_wrong'});
+        OB.disabled=false;
+        this.router.navigateByUrl('')
+      }
+      let otpgiven=document.getElementById("OTP") as HTMLInputElement;
     if(this.otp==otpgiven.value)
-    {this.RegisterAccount(this.user_data);}
+    { OB.disabled=true;
+      this.RegisterAccount(this.user_data);
+    }
     else
     {
+      OB.disabled=false;
       this.snackbar.open("Wrong Attempt Please Try Again", "", {
       duration: 200000, panelClass: 'snackbar_wrong'});
       this.number_of_otp_attempts=this.number_of_otp_attempts+1;
@@ -82,6 +97,7 @@ export class SignUp
       {
         this.snackbar.open("3 Wrong Attempts Please Try Again Later", "", {
           duration: 200000, panelClass: 'snackbar_wrong'});
+        OB.disabled=false;
         this.router.navigateByUrl('')
       }
     }
@@ -123,7 +139,7 @@ export class SignUp
     let username=document.getElementById("username") as HTMLInputElement;
     let password =document.getElementById("password") as HTMLInputElement;
     let password_check=document.getElementById("confirm_password") as HTMLInputElement
-    let passwordformat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    let passwordformat = /^.*(?=.{6,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/;
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     let usernameformat = /[A-Za-z]/
     let passmatch=0;
@@ -194,7 +210,7 @@ export class SignUp
       }
       if(passcheck==0)
       {
-        this.snackbar.open("Password Should Contain 6-20 Characters which contain at least one numeric digit, one uppercase and one lowercase letter", "", {
+        this.snackbar.open("Password Should Contain 6-20 Characters which contain at least one numeric digit, one uppercase, one lowercase letter and 1 Special Charater--[!@#$%^&*()]", "", {
           duration: 200000,panelClass: 'snackbar_wrong'});
       }
       if(emailcheck==0)

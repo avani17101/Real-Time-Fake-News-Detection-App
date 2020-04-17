@@ -61,7 +61,6 @@ def user_signup(request):
 @csrf_exempt 
 def user_login(request):
     answer = {'ans' : 'Not Logged In'}
-    print(answer)
     if request.method == 'POST':
         data = JSONParser().parse(request)
         users = User_Credentials.objects.filter(email = data['email'])
@@ -107,3 +106,12 @@ def otp_mail(request):
     send_mail("OTP Verification", msg, "scrapshut-dass@outlook.com", [data['email']], fail_silently=False)
     return JsonResponse(answer)
 
+@csrf_exempt
+def get_user_reviews(request):
+    data=JSONParser().parse(request)
+    user_reviews = Reviews.objects.filter(user = data['username'])
+    user_review_data= {
+       'user_reviews' : list(user_reviews.values())
+    }
+    print (user_review_data)
+    return JsonResponse(user_review_data)

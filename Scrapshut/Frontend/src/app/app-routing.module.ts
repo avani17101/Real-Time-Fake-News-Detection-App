@@ -7,6 +7,7 @@ import {CheckWebsiteRating} from './CheckWebsiteRating.component'
 import {Home_Page} from './HomePage'
 import {SignUp} from './signup.component'
 import {Login} from './login.component'
+import {Dashboard} from './Dashboard.component'
 
 const routes: Routes = [
   {path : '', component: Home_Page},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'RatingForm', component: RateWebsiteForm},
   { path: 'RateWebsite', component: RateWebsite},
   { path: 'CheckWebsiteRating', component: CheckWebsiteRating},
+  { path: 'Dashboard', component: Dashboard},
 ];
 
 @NgModule({
@@ -23,4 +25,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponent = [Home_Page,SignUp,RateWebsiteForm, StartPage, RateWebsite,CheckWebsiteRating]
+export const routingComponent = [Home_Page,SignUp,RateWebsiteForm, StartPage, RateWebsite,CheckWebsiteRating,Dashboard]

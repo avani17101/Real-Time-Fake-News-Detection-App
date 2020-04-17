@@ -32,4 +32,7 @@ import { Observable } from 'rxjs';
     otp_mail(data :any): Observable<any>{
       return this.http.post(`${this.baseUrl}/otp_mail/`,data)
     }
+    get_user_reviews(data :any): Observable<any>{
+      return this.http.post(`${this.baseUrl}/get_user_reviews/`,data)
+    }
   }

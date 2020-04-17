@@ -34,7 +34,7 @@ body, html {
     <a href="#home" class="w3-bar-item w3-button w3-wide">SCRAPSHUT</a>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-      <a href="" class="w3-bar-item w3-button"><i class="fa fa-tachometer"></i>DASHBAORD</a>
+      <a (click)="Dashboard()" class="w3-bar-item w3-button"><i class="fa fa-tachometer"></i>DASHBAORD</a>
       <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-user"></i>CONTACT</a>
       <a href="" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> LOGOUT</a>
     </div>
@@ -45,8 +45,26 @@ body, html {
     </a>
   </div>
 </div>
-<div id="myModal" class="modal">
 
+<div id="tableModal" class="tableModal">
+  <div class="table_content">
+  <span class="closetable w3-text-orange" id="closetable">&times;</span>
+  <table class = "w3-table-all w3-xlarge">
+    <tr>
+      <th class="w3-black"*ngFor="let col of columns">
+        {{col}}
+      </th>
+    </tr>
+    <tr class ="w3-hover-red" *ngFor="let char of character | async" >
+      <td *ngFor="let col of columns">
+        {{char[col]}}
+      </td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+<div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
     <legend>**If You Are Reviewing A Previously Reviewd URL Your Review Will Be Overwritten**</legend>
@@ -65,15 +83,12 @@ body, html {
         <input id="value3" type="radio" name="radio1" value="Other" />
         <label for="value3">Other</label>
       </div>
-      <div class="select">
-        <select id="rating">
-          <option value=0>Rating</option>
-          <option value=1>1</option>
-          <option value=2>2</option>
-          <option value=3>3</option>
-          <option value=4>4</option>
-          <option value=5>5</option>
-        </select>
+      <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
       </div>
       <textarea id="review" placeholder="Please Enter Text You Want To Report False Else Write" value="Empty"></textarea>
       <input (click)="SubmitReview()" class="ReviewSubmit" type="reset" value="Submit" />
@@ -84,7 +99,7 @@ body, html {
 <!-- Sidebar on small screens when clicking the menu icon -->
 <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="" onclick="w3_close()" class="w3-bar-item w3-button">DASHBOARD</a>
+  <a (click)="Dashboard()" onclick="w3_close()" class="w3-bar-item w3-button">DASHBOARD</a>
   <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
   <a href="" onclick="w3_close()" class="w3-bar-item w3-button">LOGOUT</a>
 </nav>

@@ -5,7 +5,7 @@ from .models import Reviews,User_Credentials
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Reviews
-        fields = ('type', 'rating', 'review', 'url')
+        fields = ('user','type', 'rating', 'review', 'url')
 
 class UserCredentialSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

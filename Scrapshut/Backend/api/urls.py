@@ -16,7 +16,8 @@ urlpatterns = [
     url(r'^user_signup',views.user_signup),
     url(r'^check_url',views.check_url),
     url(r'^credential_check',views.credential_check),
-    url(r'^otp_mail',views.otp_mail)
+    url(r'^otp_mail',views.otp_mail),
+    url(r'^get_user_reviews',views.get_user_reviews)
     # path('', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
