@@ -1,0 +1,2 @@
+Add the four files downloaded to this forlder from this link 
+http://nlp.stanford.edu/data/glove.6B.zip
