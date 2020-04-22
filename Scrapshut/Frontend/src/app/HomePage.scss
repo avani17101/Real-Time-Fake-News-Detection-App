@@ -138,6 +138,37 @@
     }
   }
 }
+//Fake News Box
+.fake_box{
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  width: 100%; /* Full width */
+  height: auto; /* Full height */
+}
+.fake_prompt_box{
+  
+  font-family: monospace;
+  font-size: 20px;
+  height: 300vh;
+  width: 100%;
+}
+
+.AnsButton{
+  background: skyblue;
+  color: white;
+  padding: .5em 1em;
+  border-radius: 4px;
+}
+
+dialog{
+  max-width: 1000px;
+  top: 10%;
+  left:20%;
+  width: auto;
+  text-align: center;
+  display: block;
+}
 ::ng-deep .snackbar_right{
 	background: darkgreen;
 	color: white;

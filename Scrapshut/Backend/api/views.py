@@ -78,8 +78,8 @@ def user_login(request):
 @csrf_exempt 
 def check_url(request):
     data = JSONParser().parse(request)
-    scraper(data['url'])
-    answer = {'ans':'scraped website'}
+    output=scraper(data['url'])
+    answer = {'ans':output}
     return JsonResponse(answer)
 
 @csrf_exempt
@@ -102,7 +102,7 @@ def otp_mail(request):
     print("here")
     answer={'ans':'done'}
     data = JSONParser().parse(request)
-    msg = " Hello New User,\n To Verify Account Please Enter OTP Provided Below\n You OTP For Account Verification : " + data['otp']
+    msg = " Hello "+ data['username']+",\n To Verify Account Please Enter OTP Provided Below\n You OTP For Account Verification : " + data['otp']
     send_mail("OTP Verification", msg, "scrapshut-dass@outlook.com", [data['email']], fail_silently=False)
     return JsonResponse(answer)
 
@@ -115,3 +115,11 @@ def get_user_reviews(request):
     }
     print (user_review_data)
     return JsonResponse(user_review_data)
+
+@csrf_exempt
+def send_contact_info(request):
+    answer={'ans':'done'}
+    data = JSONParser().parse(request)
+    msg = "Name : "+ data['name']+"\n\nEmail : " + data['email'] + "\n\nSubject : " + data['subject'] + "\n\nMessage : " + data['message']
+    send_mail("Query/Contact From " + data['name'], msg, "scrapshut-dass@outlook.com", ["scrapshut-dass@outlook.com"], fail_silently=False)
+    return JsonResponse(answer)

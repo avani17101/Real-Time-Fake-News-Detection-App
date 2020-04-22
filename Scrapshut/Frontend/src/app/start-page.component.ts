@@ -15,9 +15,12 @@ export class StartPage {
   title = 'StartPage';
   user = localStorage.getItem('logged_in_user')
   url_text = ""
+  CheckWebsiteAns="Website Is Fake !!!!!"
   columns=[]
   character; 
+  
   constructor(private service: AppService,private snackbar:MatSnackBar,private router: Router) {}
+  
   ngOnInit(){
     if(localStorage.getItem('logged_in_user')==null)
     {
@@ -33,6 +36,38 @@ export class StartPage {
           this.character = of(data.user_reviews);
       }
   );
+  }
+  CheckWebsite(urlc){
+    let url_data={url:urlc};
+    this.service.check_url(url_data).subscribe(
+      data=> {
+        this.url_text=urlc
+        if(data.ans === 'Fake')
+        {
+          this.CheckWebsiteAns="Website Is Fake !!!!!";
+        }
+        else if ( data.ans === 'True')
+        {
+          this.CheckWebsiteAns="Website Is Not Fake, i.e It Is Reliable !!!";
+        }
+        else
+        {
+          this.CheckWebsiteAns="Website Has Fake - Links in Article, i.e Proceed At Your Own Risk !!!";
+        }
+        var modal = document.getElementById("fake_box");
+            
+            // Get the <span> element that closes the modal
+        var button = document.getElementById("AnsButton");
+                
+                // When the user clicks the button, open the modal 
+        modal.style.display = "block";
+                
+                // When the user clicks on <span> (x), close the modal
+        button.onclick = function() {
+          modal.style.display = "none";
+      }
+      }
+    );
   }
   URL_Verification1()
   {
@@ -52,9 +87,9 @@ export class StartPage {
         {
           // alert("URL EXISTS")
           
-          this.snackbar.open("URL EXISTS", "", {
+          this.snackbar.open("URL EXISTS Let's Check If It's Fake Or Not", "", {
             duration: 20000,panelClass: 'snackbar_right'});
-            this.router.navigateByUrl('CheckWebsiteRating')
+            this.CheckWebsite(url.value)
         }
       }
     );
@@ -84,6 +119,7 @@ export class StartPage {
 
             // Get the button that opens the modal
             var btn = document.getElementById("myBtn");
+            var reviewform = document.getElementById("reviewform") as HTMLFormElement;
             
             // Get the <span> element that closes the modal
             var span = document.getElementById("close");
@@ -94,12 +130,15 @@ export class StartPage {
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
               modal.style.display = "none";
+              reviewform.reset();
             }
             
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
               if (event.target == modal) {
                 modal.style.display = "none";
+                reviewform.reset();
+
               }
             }
         }
@@ -204,5 +243,38 @@ export class StartPage {
        }
       )
     }
+  }
+
+  SubmitQueryContact()
+  {
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    let otherformat = /[A-Za-z]/
+    let formid =document.getElementById("contactform") as HTMLFormElement;
+    let email=document.getElementById("contactemail") as HTMLInputElement;
+    let subject=document.getElementById("contactsubject") as HTMLInputElement;
+    let message=document.getElementById("contactmessage") as HTMLInputElement;
+    if(email.value.match(mailformat) && subject.value.match(otherformat) && message.value.match(otherformat))
+    {
+      let contactinfo={
+        name: this.user,
+        email: email.value,
+        subject: subject.value,
+        message: message.value
+      }
+      formid.reset()
+      this.service.send_contact_info(contactinfo).subscribe(
+        data=>{
+
+        }
+      )
+      this.snackbar.open("Sent Details", "", {
+        duration: 20000,panelClass: 'snackbar_right'});
+    }
+    else
+    {
+      this.snackbar.open("Please Check Details", "", {
+        duration: 20000,panelClass: 'snackbar_wrong'});
+    }
+
   }
 }

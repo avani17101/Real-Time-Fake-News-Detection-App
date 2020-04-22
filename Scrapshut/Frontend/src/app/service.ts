@@ -35,4 +35,7 @@ import { Observable } from 'rxjs';
     get_user_reviews(data :any): Observable<any>{
       return this.http.post(`${this.baseUrl}/get_user_reviews/`,data)
     }
+    send_contact_info(data :any): Observable<any>{
+      return this.http.post(`${this.baseUrl}/send_contact_info/`,data)
+    }
   }

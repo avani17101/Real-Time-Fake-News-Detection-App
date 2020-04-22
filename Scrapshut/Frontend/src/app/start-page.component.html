@@ -35,7 +35,6 @@ body, html {
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
       <a (click)="Dashboard()" class="w3-bar-item w3-button"><i class="fa fa-tachometer"></i>DASHBAORD</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-user"></i>CONTACT</a>
       <a href="" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> LOGOUT</a>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
@@ -69,7 +68,7 @@ body, html {
   <div class="modal-content">
     <legend>**If You Are Reviewing A Previously Reviewd URL Your Review Will Be Overwritten**</legend>
     <span class="close" id="close">&times;</span>
-    <form>
+    <form id="reviewform">
       <h2>{{url_text}}</h2>
       <div id="radio">
         <input id="value1" type="radio" name="radio1" value="Fake"/>
@@ -96,11 +95,25 @@ body, html {
   </div>
 
 </div>
+
+<!-- Fake News Box-->
+<div class="fake_box" id="fake_box">
+<div class="fake_prompt_box" id="fake_prompt_box">
+  <dialog >
+    <p>
+      Hello {{user}}, <br>The Truth Is About To Revealed And The Reality Of  ----> <br>{{url_text}}<br><br>
+    </p>
+      <h2>{{CheckWebsiteAns}} </h2>
+    
+    <button class="AnsButton" id="AnsButton">Close</button>
+  </dialog>
+</div>
+</div>
+<!--END-->
 <!-- Sidebar on small screens when clicking the menu icon -->
 <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
   <a (click)="Dashboard()" onclick="w3_close()" class="w3-bar-item w3-button">DASHBOARD</a>
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
   <a href="" onclick="w3_close()" class="w3-bar-item w3-button">LOGOUT</a>
 </nav>
 
@@ -209,22 +222,21 @@ body, html {
 </div>
 
 <!-- Contact Section -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="scontact">
   <h3 class="w3-center">CONTACT</h3>
   <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
   <div style="margin-top:48px">
     <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> India</p>
     <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +91 XXXXXXXXXX</p>
-    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: scrapshut-dass@outlook.com</p>
     <br>
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+    <form action="/action_page.php" id="contactform" target="_blank">
+      <p><input class="w3-input w3-border" type="text" id="contactemail" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" id="contactsubject" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-border" type="text" id="contactmessage" placeholder="Message" required name="Message"></p>
       <p>
-        <button class="w3-button w3-black" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        <button (click)="SubmitQueryContact()" class="w3-button w3-black" type="button">
+          <i  class="fa fa-paper-plane"></i> SEND MESSAGE
         </button>
       </p>
     </form>

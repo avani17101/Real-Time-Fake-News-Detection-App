@@ -172,7 +172,8 @@ export class SignUp
     }
     let otp_data = {
       email: email.value,
-      otp: this.otp
+      otp: this.otp,
+      username: username.value
     }
     if (passmatch==1 && passcheck==1 && emailcheck==1 && usernamecheck==1)
     {
