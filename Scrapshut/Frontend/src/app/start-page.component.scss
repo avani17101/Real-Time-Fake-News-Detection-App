@@ -60,7 +60,7 @@ tr:nth-child(odd) {
 }
 /* Modal Content */
 .modal-content {
-  background: url(../assets/Network.jpg);
+  background: #373d42;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
@@ -84,6 +84,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+legend,
 button,
 input,
 select,
