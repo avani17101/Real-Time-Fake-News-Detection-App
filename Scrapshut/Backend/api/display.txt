@@ -88,3 +88,41 @@ http://usatoday.com.co/ reported as fake
 
 
 Fake
+
+True
+
+True
+
+True
+
+https://bients.com reported as clickbait
+
+
+https://bients.com reported as clickbait
+
+
+Fake
+
+https://bients.com/ reported as clickbait
+
+
+https://bients.com/ reported as clickbait
+
+
+Fake
+
+https://bients.com/2020/04/not-china-imposes-new-coronavirus-lockdown-fears-grow-devastating-second-wave/ reported as clickbait
+
+
+https://bients.com/2020/04/not-china-imposes-new-coronavirus-lockdown-fears-grow-devastating-second-wave/ reported as clickbait
+
+
+Fake
+
+True
+
+True
+
+True
+
+Fake-Link
