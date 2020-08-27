@@ -1,12 +1,4 @@
-# DASS24
+# Project done as part of Design and Analysis of Software Systems course at IIIT Hyderabad.
 
-Team 24
-
-Parv Joshi
-Siddharth Jain
-Avani Gupta
-Apoorva TVK
-
-Mentor : Mohit Chandra
-
-Client : scrapshut
+Client : [Scrapshut](https://scrapshut.com/) <br>
+Mentor : Mohit Chandra <br>
